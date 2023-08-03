@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgress
+  template:
+    metadata:
+      labels:
+        app: postgress
+    spec:
+      containers:
+        - name: postgress
+          image: postgress:alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: postgress_password
+              value: "echo -n v1 | base64" 
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-data
+       volumes:
+         - name: postgres-data 
+           persistentVolumeClaim:
+             claimName: postgres-pvc
+          

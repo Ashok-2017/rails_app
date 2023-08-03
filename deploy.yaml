@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+name: Deployment
+metadata:
+  name: rails-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rails-app
+  template:
+    metadata:
+      labels:
+        app: rails-app
+  spec:
+    containers:
+      - name: ruby:alpine-1.0
+      ports:
+        - containerPort: 8345
+      env:
+        - name: RAILS_ENV
+          value: "production" 
+      

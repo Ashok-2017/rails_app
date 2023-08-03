@@ -1,0 +1,13 @@
+apiVersion: v1
+name: ruby
+metadata:
+  name: ruby-pod
+template:
+  metadata:
+    selector:
+      name: ruby-pod
+replica: 3
+container:
+  - image: ruby:alpine
+    imagePullBackoff: always
+     

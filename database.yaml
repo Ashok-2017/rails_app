@@ -1,0 +1,9 @@
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  host: rails-app-service
+  database: myapp.production
+  pool: 5
+  username: postgres
+  password: 
